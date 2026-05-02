@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# If the requested URL does not contain a file or directory
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Try to serve the requested URL plus .php
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+ErrorDocument 404 /efest/index.php
+
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.php [NC]
+RewriteRule ^ /%1 [R=301,L]
